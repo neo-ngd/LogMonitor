@@ -1,7 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## requisite
 * node.js v8.12.0 or above
-
+## installlation
+your can refer below: **npm run build**
+```
+git clone https://github.com/KickSeason/log-monitor.git
+npm install
+npm install -g serve
+npm run build
+serve -s build -p 3000
+```
+now your server serves on 3000
 ## Available Scripts
 
 In the project directory, you can run:
