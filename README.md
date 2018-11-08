@@ -1,4 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## requisite
+* node.js v8.12.0 or above
 
 ## Available Scripts
 
