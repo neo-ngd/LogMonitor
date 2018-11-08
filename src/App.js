@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import {subscribeToLog} from './api/logbackend';
+import './App.css';
+
+function numberStr(num, length) {  
+    return (Array(length).join(' ') + num).slice(-length);  
+}
 
 class Log extends Component {  
     render = function() {
       return (
-        <div>
-            <span>{ this.props.index +':'+ this.props.text}</span>
+        <div className="Log">
+            <span>{ numberStr(this.props.index, 4) +':'+ this.props.text}</span>
         </div>
       );
     }
@@ -18,7 +23,6 @@ class LogBox extends Component {
     constructor(props) {
         super(props)
         subscribeToLog((log, err) => {
-            console.log(log)
             if (err) {
                 console.log(err);
                 return;
@@ -26,8 +30,13 @@ class LogBox extends Component {
             if (!this.isLog(log)) {
                 return;
             }
-            console.log(this.state.data.length)
-            log.Key = this.state.data.length + 1;
+            let index = this.state.data.length + 1;
+            if (10000 < index) {
+                log.Key = 1
+                this.setState({data: [log]})
+                return
+            }
+            log.Key = index
             let newdata = this.state.data.concat(log);
             this.setState({data: newdata});
         })
@@ -49,6 +58,15 @@ class LogBox extends Component {
   }
   
 class LogList extends Component {
+    scrollToBottom = () => {
+        this.el.scrollIntoView({ behavior: "smooth" });
+    }
+    componentDidMount() {
+        this.scrollToBottom();
+    }
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
     render = function() {
       var loglistFunc = this.props.data.map(function(log) {
         return (
@@ -56,8 +74,11 @@ class LogList extends Component {
         );
       });
       return (
-        <div className="logList">
+        <div>
+        <div className="logList" >
           {loglistFunc}
+        </div>
+        <div ref={el => {this.el = el;}}/>
         </div>
       );
     }
