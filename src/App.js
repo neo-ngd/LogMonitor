@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
 import {subscribeToLog} from './api/logbackend';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 function numberStr(num, length) {  
     return (Array(length).join(' ') + num).slice(-length);  
 }
 
-class Log extends Component {  
+class Log extends Component { 
+    constructor(props) {
+        super(props)
+    }
     render = function() {
-      return (
-        <div className="Log">
-            <span>{ numberStr(this.props.index, 4) +':'+ this.props.text}</span>
-        </div>
+        let logstr = numberStr(this.props.log.Key, 4) + `:[${this.props.log.Name}] ${this.props.log.Text}`
+        return (
+            <div className="Log">
+                <span>{logstr}</span>
+            </div>
       );
     }
   }
   
 class LogBox extends Component {
-    isLog(log) {
+    tagFilter(log) {
+        let tagfilter = this.props.match.params.name;
+        if (tagfilter) {
+            if (tagfilter == 'all') {
+                return true
+            }
+            if (0 <= tagfilter.indexOf(log.Name)) {
+                return true;
+            }
+            return false
+        }
         return true;
     }
     constructor(props) {
@@ -27,7 +42,7 @@ class LogBox extends Component {
                 console.log(err);
                 return;
             }
-            if (!this.isLog(log)) {
+            if (!this.tagFilter(log)) {
                 return;
             }
             let index = this.state.data.length + 1;
@@ -70,7 +85,7 @@ class LogList extends Component {
     render = function() {
       var loglistFunc = this.props.data.map(function(log) {
         return (
-          <Log text={log.Text} key={log.Key} index={log.Key}/>
+          <Log log={log} key={log.Key}/>
         );
       });
       return (
@@ -85,11 +100,18 @@ class LogList extends Component {
   }
 
 class App extends Component {
-  render() {
-    return (
-        <LogBox url="http://localhost:3001/api/logs" pollInterval={1000} />
-    );
-  }
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+            <Router >
+                <Switch>
+                    <Route path="/:name" component={LogBox}/>
+                </Switch>
+            </Router>
+        );
+    }
 }
 
 export default App;
