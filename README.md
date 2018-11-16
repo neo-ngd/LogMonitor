@@ -12,7 +12,7 @@ serve -s build -p 3000
 ```
 now your server serves on 3000
 
-you can visit http://localhost:3000/all  to show the logs. or change all to a node **name** to filter new logs coming.
+you can visit http://localhost:3000/all  to show the logs, or change all to a node **name** to filter new logs coming.  
 like: http://localhost:3000/ngd
 ## log form
 ${index}:[${node_name}] ${text}
