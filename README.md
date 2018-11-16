@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## installlation
 your can refer below: **npm run build**
 ```
-git clone https://github.com/KickSeason/log-monitor.git
+git clone https://github.com/neo-ngd/LogMonitor.git
 npm install
 npm install -g serve
 npm run build
