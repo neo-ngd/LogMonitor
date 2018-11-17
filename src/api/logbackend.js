@@ -1,6 +1,7 @@
 import io from 'socket.io-client';
+import config from '../config';
 
-const socket = io.connect('http://47.98.227.225:8091/socket.io/');
+const socket = io.connect(config.server);
 
 function subscribeToLog(cb) {
   socket.on('log:log', log => cb(log, null));
