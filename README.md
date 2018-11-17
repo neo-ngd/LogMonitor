@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 your can refer below: **npm run build**
 ```
 git clone https://github.com/neo-ngd/LogMonitor.git
+Change ./src/api/logbackend.js#L3 according to server IP and LogServer "webport".
 npm install
 npm install -g serve
 npm run build
