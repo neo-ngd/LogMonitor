@@ -8,9 +8,6 @@ function numberStr(num, length) {
 }
 
 class Log extends Component { 
-    constructor(props) {
-        super(props)
-    }
     render = function() {
         let logstr = numberStr(this.props.log.Key, 4) + `:[${this.props.log.Name}] ${this.props.log.Text}`
         return (
@@ -25,7 +22,7 @@ class LogBox extends Component {
     tagFilter(log) {
         let tagfilter = this.props.match.params.name;
         if (tagfilter) {
-            if (tagfilter == 'all') {
+            if (tagfilter === 'all') {
                 return true
             }
             if (0 <= tagfilter.indexOf(log.Name)) {
@@ -100,9 +97,6 @@ class LogList extends Component {
   }
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-    }
     render() {
         return (
             <Router >
