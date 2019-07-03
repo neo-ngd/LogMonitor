@@ -12,3 +12,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.log {
+  color: #f1f1f1;
+  font-family: Cousine,monospace;
+  font-size: 12px;
+}
+.logList {
+  background-color: #222;
+}
