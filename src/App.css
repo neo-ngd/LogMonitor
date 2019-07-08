@@ -21,6 +21,29 @@
 .App-link {
   color: #61dafb;
 }
+.logBox{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+}
+.header{
+  height: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.log {
+  color: #f1f1f1;
+  font-family: Cousine,monospace;
+  font-size: 12px;
+  height: 10px;
+}
+.scrollarea {
+  background-color: #222;
+  height: 95%;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -30,3 +53,4 @@
     transform: rotate(360deg);
   }
 }
+
