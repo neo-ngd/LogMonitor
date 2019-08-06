@@ -1,4 +1,4 @@
-var wsServer = "ws://localhost:8081/ws/";//document.location.href.replace("http", "ws") + "ws/";
+var wsServer = document.location.href.replace("http", "ws") + "ws/";
 var ws = new WebSocket(wsServer);
 var logger = null;
 var message = "";
