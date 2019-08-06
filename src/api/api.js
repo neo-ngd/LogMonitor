@@ -1,4 +1,4 @@
-var wsServer = document.location.href.replace("http", "ws") + "ws/";
+var wsServer = "ws://localhost:8081/ws/";//document.location.href.replace("http", "ws") + "ws/";
 var ws = new WebSocket(wsServer);
 var logger = null;
 var message = "";
@@ -23,16 +23,11 @@ ws.onerror = function (e) {
 };
 
 exports.Regist = function(name, cb) {
-    console.log("regist");
     logger = cb;
-    console.log(ws.OPEN, ws.CONNECTING, ws.CLOSED, ws.CLOSING);
-    console.log(ws.readyState);
     if (ws.readyState === ws.OPEN) {
-        console.log("send");
         ws.send(name);
         return;
     }
-    console.log("store");
     message = name;
 };
 
